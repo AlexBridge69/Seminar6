@@ -165,3 +165,28 @@ encoded=compressing_text(original_data)
 with open("compressed_text.txt", 'w') as result_file:
     result_file.write(encoded)
 
+'''
+Задача 3.
+Создайте функцию, которая принимает строку и возвращает строку, зашифрованную с помощью Rot13.
+Если в строку включены числа или специальные символы, они должны быть возвращены как есть.
+Также создайте функцию, которая расшифровывает эту строку обратно (некий начальный аналог шифрования сообщений). 
+'''
+def rot13(text):
+    chars = "abcdefghijklmnopqrstuvwxyz"
+    trans = chars[13:]+chars[:13]
+    rot_char = lambda c: trans[chars.find(c)] if chars.find(c)>-1 else c
+    return ''.join( rot_char(c) for c in text )
+
+def de_rot13(text):
+    chars = "nopqrstuvwxyzabcdefghijklm"
+    trans = chars[13:]+chars[:13]
+    rot_char = lambda c: trans[chars.find(c)] if chars.find(c)>-1 else c
+    return ''.join( rot_char(c) for c in text )
+
+text="Hello! My name is Alex.".lower()
+
+coded=rot13(text)
+print(coded)
+
+decoded=de_rot13(coded)
+print(decoded)
