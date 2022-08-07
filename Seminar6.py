@@ -125,6 +125,7 @@ while True:
 Реализовать RLE алгоритм. Реализовать модуль сжатия и восстановления данных.
 Входные и выходные данные хранятся в отдельных файлах (в одном файлике отрывок из какой-то книги, а втором файлике — сжатая версия этого текста). 
 '''
+
 def compressing_text(original_text):
     compressed_text = ""
     i = 0
@@ -155,6 +156,12 @@ def decompressing_text(incoming_text):
         i = i + 2
     return decompressed_text
 
-with open ("original_text.txt", "r") as original_file:
-    original_data=original_file.readlines()
-print(original_data)
+
+with open("original_text.txt", "r") as original:
+    original_data=original.read()
+
+encoded=compressing_text(original_data)
+
+with open("compressed_text.txt", 'w') as result_file:
+    result_file.write(encoded)
+
